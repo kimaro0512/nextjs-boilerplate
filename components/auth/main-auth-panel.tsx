@@ -1,5 +1,8 @@
 import type { Session } from "next-auth"
+import Link from "next/link"
+import { LayoutDashboard, LogIn, LogOut, UserRound } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 type AuthAction = (formData: FormData) => void | Promise<void>
 
@@ -20,24 +23,23 @@ export function MainAuthPanel({
     session?.user?.name ?? session?.user?.email ?? "Google user"
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-background px-6 py-10 text-foreground">
-      <section className="w-full max-w-xl space-y-8">
-        <div className="space-y-3">
-          <p className="text-sm font-medium text-muted-foreground">
-            Next.js Boilerplate
-          </p>
-          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-            {session ? "로그인되었습니다" : signedOutTitle}
-          </h1>
-          <p className="text-sm leading-6 text-muted-foreground">
-            {session
-              ? "현재 메인 화면을 로그인된 상태로 보고 있습니다."
-              : "메인 화면은 로그인 없이 접근할 수 있습니다."}
-          </p>
+    <Card className="rounded-lg">
+      <CardHeader>
+        <div className="mb-2 flex size-9 items-center justify-center rounded-lg bg-sky-50 text-sky-700 ring-1 ring-sky-200">
+          <UserRound className="size-4" aria-hidden="true" />
         </div>
-
+        <CardTitle aria-level={2} className="text-xl" role="heading">
+          {session ? "로그인되었습니다" : signedOutTitle}
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-5">
+        <p className="text-sm leading-6 text-muted-foreground">
+          {session
+            ? "현재 메인 화면을 로그인된 상태로 보고 있습니다."
+            : "메인 화면은 로그인 없이 접근할 수 있습니다."}
+        </p>
         {session ? (
-          <div className="space-y-4 rounded-lg border bg-card p-4">
+          <div className="space-y-4">
             <div>
               <p className="text-xs font-medium text-muted-foreground">
                 Signed in as
@@ -49,20 +51,30 @@ export function MainAuthPanel({
                 </p>
               ) : null}
             </div>
-            <form action={logoutAction}>
-              <Button type="submit" variant="outline">
-                로그아웃
+            <div className="flex flex-wrap gap-2">
+              <Button variant="secondary" asChild>
+                <Link href="/dashboard">
+                  <LayoutDashboard className="size-4" aria-hidden="true" />
+                  대시보드
+                </Link>
               </Button>
-            </form>
+              <form action={logoutAction}>
+                <Button type="submit" variant="outline">
+                  <LogOut className="size-4" aria-hidden="true" />
+                  로그아웃
+                </Button>
+              </form>
+            </div>
           </div>
         ) : (
           <form action={loginAction}>
             <Button type="submit" size="lg">
+              <LogIn className="size-4" aria-hidden="true" />
               Google로 로그인
             </Button>
           </form>
         )}
-      </section>
-    </main>
+      </CardContent>
+    </Card>
   )
 }

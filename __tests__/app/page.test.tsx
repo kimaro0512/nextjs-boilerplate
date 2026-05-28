@@ -1,4 +1,6 @@
 import { describe, expect, it, vi, beforeEach } from "vitest"
+import type { ReactElement, ReactNode } from "react"
+import type { Session } from "next-auth"
 
 const authMocks = vi.hoisted(() => ({
   auth: vi.fn(),
@@ -8,7 +10,43 @@ const authMocks = vi.hoisted(() => ({
 
 vi.mock("@/lib/auth", () => authMocks)
 
+import { MainAuthPanel } from "@/components/auth/main-auth-panel"
+import { Header } from "@/components/common/header"
 import Home from "@/app/page"
+
+type AuthAction = (formData: FormData) => void | Promise<void>
+type AuthSurfaceProps = {
+  loginAction: AuthAction
+  logoutAction: AuthAction
+  session: Session | null
+}
+
+function findElementByType<Props>(
+  node: ReactNode,
+  type: ReactElement["type"]
+): ReactElement<Props> | null {
+  if (!node || typeof node !== "object" || !("type" in node)) {
+    return null
+  }
+
+  const element = node as ReactElement<Props & { children?: ReactNode }>
+
+  if (element.type === type) {
+    return element as ReactElement<Props>
+  }
+
+  const children = element.props.children
+  const childList = Array.isArray(children) ? children : [children]
+
+  for (const child of childList) {
+    const match = findElementByType<Props>(child, type)
+    if (match) {
+      return match
+    }
+  }
+
+  return null
+}
 
 describe("Home page", () => {
   beforeEach(() => {
@@ -21,10 +59,13 @@ describe("Home page", () => {
     authMocks.auth.mockResolvedValue(null)
 
     const element = await Home()
+    const header = findElementByType<AuthSurfaceProps>(element, Header)
+    const panel = findElementByType<AuthSurfaceProps>(element, MainAuthPanel)
 
-    expect(element.props.session).toBe(null)
+    expect(header?.props.session).toBe(null)
+    expect(panel?.props.session).toBe(null)
 
-    await element.props.loginAction(new FormData())
+    await panel?.props.loginAction(new FormData())
 
     expect(authMocks.signIn).toHaveBeenCalledWith("google", {
       redirectTo: "/",
@@ -42,10 +83,13 @@ describe("Home page", () => {
     })
 
     const element = await Home()
+    const header = findElementByType<AuthSurfaceProps>(element, Header)
+    const panel = findElementByType<AuthSurfaceProps>(element, MainAuthPanel)
 
-    expect(element.props.session?.user.email).toBe("user@example.com")
+    expect(header?.props.session?.user.email).toBe("user@example.com")
+    expect(panel?.props.session?.user.email).toBe("user@example.com")
 
-    await element.props.logoutAction(new FormData())
+    await panel?.props.logoutAction(new FormData())
 
     expect(authMocks.signOut).toHaveBeenCalledWith({
       redirectTo: "/",

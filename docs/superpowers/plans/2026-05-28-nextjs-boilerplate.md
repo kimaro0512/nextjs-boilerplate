@@ -43,6 +43,7 @@ __tests__/components/common/providers.test.tsx
 ### Task 1: Next.js 프로젝트 초기화
 
 **Files:**
+
 - Create: `package.json`, `tsconfig.json`, `next.config.ts` (create-next-app 자동 생성)
 
 - [ ] **Step 1: Next.js 15 프로젝트 생성**
@@ -54,6 +55,7 @@ npx create-next-app@latest . --typescript --tailwind --eslint --app --no-src-dir
 ```
 
 프롬프트 응답:
+
 - `Would you like to use Turbopack?` → Yes
 - `The directory . contains files...` → y
 
@@ -107,6 +109,7 @@ git commit -m "chore: initialize Next.js 15 project with TypeScript and Tailwind
 ### Task 2: Prettier + Vitest 설정
 
 **Files:**
+
 - Create: `.prettierrc`
 - Create: `.prettierignore`
 - Create: `vitest.config.ts`
@@ -223,6 +226,7 @@ git commit -m "chore: add Prettier and Vitest configuration"
 ### Task 3: shadcn/ui 초기화 및 기본 컴포넌트 설치
 
 **Files:**
+
 - Create: `components/ui/button.tsx` (shadcn 자동 생성)
 - Create: `components/ui/card.tsx`
 - Create: `components/ui/input.tsx`
@@ -270,6 +274,7 @@ npx shadcn@latest init
 ```
 
 프롬프트 응답:
+
 - Style: `Default`
 - Base color: `Slate`
 - CSS variables: `Yes`
@@ -302,6 +307,7 @@ git commit -m "feat: add shadcn/ui with base components (button, card, input, fo
 ### Task 4: Docker Compose + 환경변수 설정
 
 **Files:**
+
 - Create: `docker-compose.yml`
 - Create: `.env.example`
 - Create: `.env.local`
@@ -401,6 +407,7 @@ git commit -m "chore: add Docker Compose for local PostgreSQL and env templates"
 ### Task 5: Prisma 설정
 
 **Files:**
+
 - Create: `prisma/schema.prisma`
 - Create: `lib/db.ts`
 - Modify: `package.json` (DB 스크립트 + postinstall 추가)
@@ -425,6 +432,7 @@ Expected: `prisma/schema.prisma` 및 `.env` 생성
 Prisma CLI는 `.env.local`을 읽지 않고 `.env`를 읽는다. `prisma init`이 생성한 `.env`를 활용하되 커밋되지 않도록 `.gitignore`에 추가한다:
 
 `.gitignore`에 아래 줄 추가:
+
 ```
 .env
 ```
@@ -570,6 +578,7 @@ git commit -m "feat: add Prisma with PostgreSQL and NextAuth schema models"
 ### Task 6: NextAuth.js v5 설정
 
 **Files:**
+
 - Create: `lib/auth.ts`
 - Create: `app/api/auth/[...nextauth]/route.ts`
 - Create: `middleware.ts`
@@ -740,6 +749,7 @@ git commit -m "feat: add NextAuth v5 with Google, GitHub, and email magic link"
 ### Task 7: TanStack Query v5 설정
 
 **Files:**
+
 - Create: `lib/query-client.ts`
 - Create: `components/common/providers.tsx`
 - Create: `__tests__/components/common/providers.test.tsx`
@@ -899,6 +909,7 @@ git commit -m "feat: add TanStack Query v5 with QueryClientProvider"
 ### Task 8: 서버 쿼리 예시 + 대시보드 페이지
 
 **Files:**
+
 - Create: `server/queries/user.ts`
 - Create: `app/(dashboard)/dashboard/page.tsx`
 
@@ -1007,6 +1018,7 @@ git commit -m "feat: add dashboard page and server query examples"
 ### Task 9: 랜딩 페이지 + 공통 헤더
 
 **Files:**
+
 - Create: `components/common/header.tsx`
 - Modify: `app/page.tsx`
 
@@ -1112,6 +1124,7 @@ git commit -m "feat: add landing page and common header component"
 ### Task 10: 최종 검증 및 README 업데이트
 
 **Files:**
+
 - Modify: `README.md`
 
 - [ ] **Step 1: 전체 테스트 실행**
@@ -1169,14 +1182,14 @@ Next.js 15 기반 개인용 범용 스타터. 인증, DB, 데이터 페칭이 �
 
 ## 기술 스택
 
-| 영역 | 선택 |
-|------|------|
-| 프레임워크 | Next.js 15 (App Router) |
-| 언어 | TypeScript strict |
-| 스타일링 | Tailwind CSS v4 + shadcn/ui |
-| 인증 | NextAuth.js v5 (Google, GitHub, 이메일 매직링크) |
-| ORM | Prisma + PostgreSQL |
-| 데이터 페칭 | TanStack Query v5 |
+| 영역        | 선택                                             |
+| ----------- | ------------------------------------------------ |
+| 프레임워크  | Next.js 15 (App Router)                          |
+| 언어        | TypeScript strict                                |
+| 스타일링    | Tailwind CSS v4 + shadcn/ui                      |
+| 인증        | NextAuth.js v5 (Google, GitHub, 이메일 매직링크) |
+| ORM         | Prisma + PostgreSQL                              |
+| 데이터 페칭 | TanStack Query v5                                |
 
 ## 시작하기
 
@@ -1209,36 +1222,36 @@ npm run dev
 
 ## 주요 스크립트
 
-| 명령어 | 설명 |
-|--------|------|
-| `npm run dev` | 개발 서버 실행 |
-| `npm run build` | 프로덕션 빌드 |
-| `npm run test` | 테스트 실행 (watch) |
-| `npm run test:run` | 테스트 1회 실행 |
-| `npm run lint` | ESLint 검사 |
-| `npm run format` | Prettier 포맷 |
-| `npm run docker:up` | PostgreSQL 컨테이너 시작 |
-| `npm run db:push` | DB 스키마 동기화 |
-| `npm run db:studio` | Prisma Studio 실행 |
+| 명령어               | 설명                      |
+| -------------------- | ------------------------- |
+| `npm run dev`        | 개발 서버 실행            |
+| `npm run build`      | 프로덕션 빌드             |
+| `npm run test`       | 테스트 실행 (watch)       |
+| `npm run test:run`   | 테스트 1회 실행           |
+| `npm run lint`       | ESLint 검사               |
+| `npm run format`     | Prettier 포맷             |
+| `npm run docker:up`  | PostgreSQL 컨테이너 시작  |
+| `npm run db:push`    | DB 스키마 동기화          |
+| `npm run db:studio`  | Prisma Studio 실행        |
 | `npm run db:migrate` | 마이그레이션 생성 및 적용 |
 
 ## 프로젝트 구조
 
 \`\`\`
 app/
-  (auth)/login/       — 로그인 페이지 (비로그인 전용)
-  (dashboard)/        — 대시보드 (로그인 필수)
-  api/auth/           — NextAuth API 핸들러
+(auth)/login/ — 로그인 페이지 (비로그인 전용)
+(dashboard)/ — 대시보드 (로그인 필수)
+api/auth/ — NextAuth API 핸들러
 components/
-  ui/                 — shadcn/ui 컴포넌트
-  common/             — 프로젝트 공통 컴포넌트
+ui/ — shadcn/ui 컴포넌트
+common/ — 프로젝트 공통 컴포넌트
 lib/
-  auth.ts             — NextAuth 설정
-  db.ts               — Prisma 클라이언트
-  query-client.ts     — TanStack Query 클라이언트
-server/queries/       — 서버 전용 DB 쿼리 함수
-prisma/schema.prisma  — DB 스키마
-middleware.ts         — 라우트 보호 미들웨어
+auth.ts — NextAuth 설정
+db.ts — Prisma 클라이언트
+query-client.ts — TanStack Query 클라이언트
+server/queries/ — 서버 전용 DB 쿼리 함수
+prisma/schema.prisma — DB 스키마
+middleware.ts — 라우트 보호 미들웨어
 \`\`\`
 ```
 

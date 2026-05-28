@@ -13,16 +13,16 @@ SaaS 앱과 콘텐츠 사이트를 모두 커버할 수 있는 개인용 Next.js
 
 ## 기술 스택
 
-| 영역 | 선택 |
-|------|------|
-| 프레임워크 | Next.js 15, App Router |
-| 언어 | TypeScript (strict mode) |
-| 스타일링 | Tailwind CSS v4 + shadcn/ui |
-| 인증 | NextAuth.js v5 (Auth.js) |
-| ORM | Prisma |
-| DB | PostgreSQL (로컬: Docker Compose) |
-| 데이터 페칭 | TanStack Query v5 |
-| 린팅/포맷 | ESLint + Prettier |
+| 영역        | 선택                              |
+| ----------- | --------------------------------- |
+| 프레임워크  | Next.js 15, App Router            |
+| 언어        | TypeScript (strict mode)          |
+| 스타일링    | Tailwind CSS v4 + shadcn/ui       |
+| 인증        | NextAuth.js v5 (Auth.js)          |
+| ORM         | Prisma                            |
+| DB          | PostgreSQL (로컬: Docker Compose) |
+| 데이터 페칭 | TanStack Query v5                 |
+| 린팅/포맷   | ESLint + Prettier                 |
 
 ---
 

@@ -5,16 +5,16 @@ import GitHub from "next-auth/providers/github"
 import Nodemailer from "next-auth/providers/nodemailer"
 import { db } from "@/lib/db"
 import { authConfig } from "@/lib/auth.config"
+import { getGoogleOAuthCredentials } from "@/lib/auth-env"
+
+const googleOAuthCredentials = getGoogleOAuthCredentials()
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
   adapter: PrismaAdapter(db),
   secret: process.env.AUTH_SECRET,
   providers: [
-    Google({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
+    Google(googleOAuthCredentials),
     GitHub({
       clientId: process.env.GITHUB_CLIENT_ID!,
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,

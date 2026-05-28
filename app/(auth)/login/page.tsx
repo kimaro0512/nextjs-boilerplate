@@ -1,37 +1,22 @@
-import { signIn } from "@/lib/auth"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { MainAuthPanel } from "@/components/auth/main-auth-panel"
+import { auth, signIn } from "@/lib/auth"
+import { redirect } from "next/navigation"
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const session = await auth()
+
+  if (session) {
+    redirect("/")
+  }
+
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle className="text-center text-2xl">로그인</CardTitle>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-3">
-          <form
-            action={async () => {
-              "use server"
-              await signIn("google", { redirectTo: "/dashboard" })
-            }}
-          >
-            <Button type="submit" className="w-full" variant="outline">
-              Google로 계속하기
-            </Button>
-          </form>
-          <form
-            action={async () => {
-              "use server"
-              await signIn("github", { redirectTo: "/dashboard" })
-            }}
-          >
-            <Button type="submit" className="w-full" variant="outline">
-              GitHub로 계속하기
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
-    </div>
+    <MainAuthPanel
+      loginAction={async () => {
+        "use server"
+        await signIn("google", { redirectTo: "/" })
+      }}
+      session={null}
+      signedOutTitle="Google 로그인"
+    />
   )
 }

@@ -1,13 +1,20 @@
-import { auth } from "@/lib/auth.edge"
-import { redirect } from "next/navigation"
-import { AutoGoogleSignIn } from "@/components/auth/auto-google-signin"
+import { MainAuthPanel } from "@/components/auth/main-auth-panel"
+import { auth, signIn, signOut } from "@/lib/auth"
 
 export default async function Home() {
   const session = await auth()
 
-  if (session) {
-    redirect("/dashboard")
-  }
-
-  return <AutoGoogleSignIn />
+  return (
+    <MainAuthPanel
+      loginAction={async () => {
+        "use server"
+        await signIn("google", { redirectTo: "/" })
+      }}
+      logoutAction={async () => {
+        "use server"
+        await signOut({ redirectTo: "/" })
+      }}
+      session={session}
+    />
+  )
 }

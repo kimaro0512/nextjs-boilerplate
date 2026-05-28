@@ -337,7 +337,7 @@ volumes:
 
 ```
 DATABASE_URL="postgresql://postgres:postgres@localhost:5432/boilerplate"
-NEXTAUTH_SECRET=
+AUTH_SECRET=
 NEXTAUTH_URL=http://localhost:3000
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
@@ -351,7 +351,7 @@ EMAIL_FROM=noreply@example.com
 
 ```
 DATABASE_URL="postgresql://postgres:postgres@localhost:5432/boilerplate"
-NEXTAUTH_SECRET=dev-secret-change-in-production
+AUTH_SECRET=dev-secret-change-in-production
 NEXTAUTH_URL=http://localhost:3000
 GOOGLE_CLIENT_ID=placeholder
 GOOGLE_CLIENT_SECRET=placeholder
@@ -1201,7 +1201,7 @@ cp .env.example .env.local
 
 `.env.local`에 아래 값을 채운다:
 
-- `NEXTAUTH_SECRET`: 임의 랜덤 문자열 (`openssl rand -base64 32`)
+- `AUTH_SECRET`: 임의 랜덤 문자열 (`openssl rand -base64 32`)
 - `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET`: [Google Cloud Console](https://console.cloud.google.com) → OAuth 2.0 클라이언트
 - `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET`: [GitHub Developer Settings](https://github.com/settings/developers) → OAuth Apps
 

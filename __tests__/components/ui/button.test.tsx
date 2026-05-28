@@ -1,0 +1,17 @@
+import { render, screen } from "@testing-library/react"
+import { Button } from "@/components/ui/button"
+
+describe("Button", () => {
+  it("renders children", () => {
+    render(<Button>Click me</Button>)
+    expect(
+      screen.getByRole("button", { name: "Click me" })
+    ).toBeInTheDocument()
+  })
+
+  it("applies variant class", () => {
+    render(<Button variant="outline">Outline</Button>)
+    const btn = screen.getByRole("button", { name: "Outline" })
+    expect(btn).toBeInTheDocument()
+  })
+})

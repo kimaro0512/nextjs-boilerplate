@@ -1,5 +1,4 @@
 import * as React from "react"
-import { Label as LabelPrimitive } from "radix-ui"
 import { Slot } from "radix-ui"
 import {
   Controller,
@@ -85,8 +84,8 @@ const FormItem = React.forwardRef<
 FormItem.displayName = "FormItem"
 
 const FormLabel = React.forwardRef<
-  React.ElementRef<typeof LabelPrimitive>,
-  React.ComponentPropsWithoutRef<typeof LabelPrimitive>
+  React.ElementRef<typeof Label>,
+  React.ComponentPropsWithoutRef<typeof Label>
 >(({ className, ...props }, ref) => {
   const { error, formItemId } = useFormField()
 
